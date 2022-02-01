@@ -1,0 +1,400 @@
+\documentclass{article}
+
+% Math Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{breqn}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\graphicspath{ {./images/} }
+
+% Colorful Notes
+\usepackage{color}
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\def\red{\color{Red}}
+\def\blue{\color{Blue}}
+\newcommand{\rnote}[1]{{\red(#1)}} % \rnote{foo} then 'foo' is red
+\newcommand{\bnote}[1]{{\blue(#1)}} % \bnote{foo} then 'foo' is blue
+
+% Concise Vector Macro
+% Write bracket vectors of arbitrary length using commands like \cv{1,2,3}
+% or \cv{0,1} ('cv' for 'column vector')
+\usepackage{stackengine}
+\newcommand\cv[1]{\setstackEOL{,,}\bracketVectorstack{#1}}
+
+% Math Environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{prop}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example} 
+\newtheorem{question}{Question}
+\newtheorem{claim}{Claim} 
+\newtheorem{conjecture}{Conjecture} 
+
+%Custom Math Commands
+\newcommand{\vt}{\vskip 5mm} % vertical space
+\newcommand{\fl}{\noindent\textbf} % first line
+\newcommand{\Fl}{\vt\noindent\textbf} % first line with space above
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm
+\newcommand{\pnorm}[1]{\left\lVert#1\right\rVert_p} % p-norm
+\newcommand{\qnorm}[1]{\left\lVert#1\right\rVert_q} % q-norm
+\newcommand{\1}[1]{\textbf{1}_{\left[#1\right]}} % indicator function 
+\newcommand{\EE}[1]{\mathbb{E}\left[#1\right]} % expectation with bracket
+\newcommand{\PP}[1]{\mathbb{P}\left[#1\right]} % expectation with bracket
+\def\limt{\lim_{t\to\infty}} % shortcut for lim as t-> infinity
+\def\limn{\lim_{n\to\infty}} % shortcut for lim as n-> infinity
+\def\sumn{\sum_{n=1}^{\infty}} % shortcut for sum from n=1 to infinity
+\def\sumkn{\sum_{k=1}^{n}} % shortcut for sum from k=1 to n
+\def\sumin{\sum_{i=1}^{n}} % shortcut for sum from i=1 to n
+\def\SAs{\sigma\text{-algebras}} % shortcut for $\sigma$-algebras
+\def\SA{\sigma\text{-algebra}} % shortcut for $\sigma$-algebra
+\def\Fn{\mathcal{F}_n} % dicrete filtration
+\def\Ft{\mathcal{F}_t} % continuous time filration (t)
+\def\Fs{\mathcal{F}_s} % continuous time filtration (s)
+\def\F{\mathcal{F}} % sigma-algebra
+\def\G{\mathcal{G}} % sigma-algebra
+\def\R{\mathbb{R}} % Real numbers
+\def\Z{\mathbb{Z}} % Integers
+\def\E{\mathbb{E}} % Expectation
+\def\P{\mathbb{P}} % Probability
+
+\def\fin{< \infty} % Is Finite
+\def\a{\alpha} %alpha
+\def\e{\epsilon} %epsilon
+\def\th{\theta} %theta
+\def\lb{\lambda} %lambda
+\def\t{\tau} %tau
+
+% Brackets and Parentheses
+\def\[{\left [}
+\def\]{\right ]}
+\def\({\left (}
+\def\){\right )}
+\def\<{\langle}
+\def\>{\rangle}
+
+
+% Macros specific to this class
+\newcommand{\advar}{\sigma_{a}^{2}} % additive variance
+\newcommand{\bvar}{\sigma_{B}^{2}}  % between population variance
+\newcommand{\mvar}{\sigma_{m}^{2}}  % mutational variance
+\newcommand{\wvar}{\sigma_{w}^{2}}  % phenotypic variation within a population
+\newcommand{\svar}{\sigma_{s}^{2}}  % per generation selection variance
+
+\title{Lecture-notes}
+
+\begin{document}
+
+
+
+\section{Botany 940 Notes}
+\subsection{2021-02-01: Brownian Motion}
+
+\subsubsection{Hamon Chapter 3: Intro to Brownian Motion}
+
+We consider traits that have continuous distribution --- such as body mass. We
+can model these traits with brownian motion. It is incorrect to equate brownian
+motion models with models of pure genetic drift. (Why?)
+
+When modeling evolution using brownian motion, we usually are considering the
+dynamics of the \textbf{mean character value} $\overline{z}$ in a population.
+This is the average value of the trait within the population. We denote by
+$\overline{z}(t)$ the value at time $t$. We can model this by a brownian motion
+process. The mean is $\overline{z}(0)$ and the variance, or ``evolutionary rate
+parameter'' is denoted by $\sigma^{2}$. We can simulate change under the
+brownian motion model by drawing from normal distributions; simply put the
+changes in a trait value over an interval of time $t$ is drawn from a normal
+random variable with mean 0 and variance $\sigma^{2}t$.
+
+
+What does this mean: ``We assume that mutations are drawn at random from a
+distribution with mean 0 and mutational variance $\sigma_{m}^{2}$.''?
+\begin{definition}[Types of Variance]
+Types of variance under this model:
+\begin{itemize}
+  \item $\mvar$ is the \textbf{mutational variance} the variance of the number of
+    new distinct mutations added per generations (I think)
+  \item $\bvar$ is \textbf{between-population phenotypic variance}, meaning the
+    variance of mean trait values across many independent runs of evolutionary
+    change over a certain time period.
+  \item $\advar$ is the \textbf{additive genetic variance} within each
+    population at some time $t$. Additive genetic variance measures the total
+    amount of genetic variation that acts additively (i.e. the contributions of
+    each allele add together to predict the final phenotype)
+  \item $\wvar$ is the total phenotypic variation within a population, including
+    both non-additive genetic effects and environmental effects.
+\end{itemize}
+\end{definition}
+
+\subsubsection{Additive variance equilibrium}
+\begin{claim}
+  We have $\E\[ \advar (t)\] \approx 2N_{e}\sigma_{m}^{2}$ for large $t$.
+\end{claim}
+\begin{proof}
+  Over time, $\advar$ will change. This is due to genetic drift (which tends to
+  decrease $\advar$) and mutational input (which tends to increase $\advar$). The
+  expected value of $\advar$ changes from one generation to the next according to
+  the formula:
+  \begin{equation*} \E\[\advar(t+1) \]= \left( 1-\frac{1}{2N_{e}}
+    \right)\E\[\sigma_{a}^{2}(t) \]+\sigma_{m}^{2}
+  \end{equation*}
+  where $t$ is the time in generations. The first term represents the loss due to
+  drift. The second term represents the gain due to new mutations each generation.
+  By induction, we have:
+
+  \begin{equation}\label{eq:2}
+    \E\[\advar(t) \] = \left( 1-\frac{1}{2N_{e}} \right)^{t}\left[ \advar(0) -2N_{e}\mvar \right] + 2N_{e}\mvar 
+  \end{equation}
+  where of course $\advar(0)$ is the starting value at time zero. This formula
+  allows us to calculate the expected additive genetic variance at any time
+  provided we know $\advar(0)$. Since $\left( 1-\frac{1}{2N_{e}} \right)^{t}\to 0$
+  as $t\to\infty$, we expect $\E\[ \advar (t) \]$ to approach equilibrium value of
+  $2N_{e}\sigma_{m}^{2}$.
+\end{proof}
+
+
+\subsubsection{Derivation of $\bvar(t)$}
+  
+
+Assume $\advar$ is at equilibrium and thus constant. Harmon claims this is
+justified by equation \eqref{eq:2}, even though that equation is about the
+expected value of $\advar$. Then skipping some calculations,
+\begin{equation}
+  \label{eq:1}
+  \bvar(t)= \frac{t\advar(t)}{N_{e}}
+\end{equation}
+
+Substituting the equilibrium value $2N_{e}\mvar$ in for $\advar(t)$ gives
+\begin{equation}
+  \label{eq:4}
+  \bvar(t) = 2t \mvar
+\end{equation}
+
+This says that the variation between two diverging populations depends on twice
+the time since they diverged and the rate of mutational input. No dependence on
+population size or starting state is observed, so under this model, long-term
+rates of evolution are dominated by the supply of new mutations to a population.
+
+Actually \eqref{eq:4} is very general, holding under a range of models.
+Unfortunately, we cannot measure $\mvar$ in any natural population.
+
+
+
+
+\begin{definition}[Heritability]
+  \textbf{Heritability} is the proportion of total phenotypic variation $\wvar$
+  within a population that is due to additive genetic effects; namely,
+  \begin{equation}
+    \label{eq:5}
+    h^{2}=\frac{\advar}{\wvar}.
+  \end{equation}
+\end{definition}
+
+By the additive variance equilibrium equation \eqref{eq:2}, we have
+\begin{equation}
+  \label{eq:6}
+  h^{2}= \frac{2N_{e}\mvar}{\wvar}
+\end{equation}
+or equivalently,
+\begin{equation}
+  \label{eq:7}
+  \mvar = \frac{h^{2}\wvar}{2N_{e}}
+\end{equation}
+and therefore by \eqref{eq:4},
+\begin{equation}
+  \label{eq:8}
+  \bvar(t) = \frac{h^{2}\wvar t}{N_{e}}.
+\end{equation}
+
+
+\subsection{Brownian Motion under Selection}
+Recall we with to model the path followed by population mean trait values under
+mutation, selection, and drift. The brownian motion model applies even to some
+cases with selection.
+
+\subsubsection{Random Directional Selection}
+We assume directional selection, but with the strength and direction of
+selection varying randomly from one generation to the next. Each generation, we
+model selection as being drawn from a normal distribution with mean 0 and
+variance $\svar$.
+
+In this case, for some reason, we have
+\begin{equation}
+  \label{eq:9}
+  \bvar = \left( \frac{h^{2}\wvar}{N_{e}}+ \svar \right)t
+\end{equation}
+In this case, if variation in selection is much greater than varition due to
+drive, then for some reason we have
+\begin{equation}
+  \label{eq:3}
+  \bvar \approx \svar
+\end{equation}
+
+\subsubsection{Random Stabilizing Selection}
+
+On the other hand, if the trait is under stabilizing selection for a particular
+optimal value, where the position of the optimal value changes randomly
+according to a brownian motion process with variance $\sigma_{E}^{2}$, then
+\begin{equation*}
+  \bvar \approx \sigma^{2}_{E}
+\end{equation*}
+
+Under both of these models, the pattern of trait evolution thorugh time still
+follows a brownian motion model, even though the changes are dominated by
+selection rather than drift. Therefore brownian motion evolution does not assume
+that characters are not under selection.
+
+\subsubsection{Constant Directional Selection}
+
+Not going to go through the equations on this one. If a trait is under
+directional selection of strength $s$ in both populations, then we get
+\begin{equation}
+  \label{eq:10}
+  \bvar(t) = \frac{h^{2}\wvar t}{N_{e}}
+\end{equation}
+this does not depend on $s$ and in fact is the same equation as \eqref{eq:8}
+which was derived earlier. Thus we can't tell by looking at two living
+populations whether the trait we are measuring was subject to selection, Or
+something like that.
+
+\subsection{Brownian Motion on a Tree}
+I am mostly familiar with this section from the diffusion group. A new thing is
+the \textbf{phylogenetic variance-covariance matrix} \textbf{C}. This matrix has a special
+structure. For phylogenetic trees with $n$ species, this is an $n\times n$
+matrix, with each row and column corresponding to one of the $n$ taxa in the tree.
+Along the diagonal are the total distances of each taxon from the root of the
+tree, while the off-diagonal elements are the total branch lengths shared by
+particular pairs of taxa. So it is a matrix $(\sigma^{2}x_{ij})$ where $x_{ii}$
+is the length of the path $P(i,r)$ from leaf $i$ to the root, and $x_{ij}$ is
+the length of those edges shared by paths $P(i,r)$ and $P(j,r)$.
+
+Example: suppose we have a phylogenetic tree with two leaves $1$ and $2$ with
+lengths $t_{2},t_{3}$ respectively, and a root edge of length $t_{1}$. We can
+describe the trait values for the two species as a single draw from a
+multivariate normal distribution. Each trait has the same expected value
+$\overline{z}(0)$, which is the starting value of the trait at the root, and two
+traits have the following covariance matrix:
+
+\begin{equation*}
+  \begin{bmatrix}
+    \sigma^2 (t_1 + t_2) & \sigma^2 t_1 \\
+    \sigma^2 t_1 & \sigma^2 (t_1 + t_3) \\
+\end{bmatrix}
+= \sigma^2
+\begin{bmatrix}
+    t_1 + t_2 & t_1 \\
+    t_1 & t_1 + t_3 \\
+\end{bmatrix} = \sigma^2 \mathbf{C}
+\end{equation*}
+we see what $\mathbf{C}$ is in this case.
+
+\section{Fitting Brownian Motion Models to Single Characters}
+\subsection{Log Transforms}
+If your data is a continuous trait and you think percentage changes matter more
+than absolute changes, then you should do a log-transform of your data.
+
+\subsection{Estimating Rates Using Independent Contrasts}
+
+\textbf{Phylogenetical idependent contrasts} (PICs) are a way to estimate the
+rate of character change across a phylogeny. There is an algorithm, the
+algorithm of independent contrats, from Felsenstein. It is used to estimate the
+rate of evolution under a Brownian model. It uses some of the following ideas.
+The \textbf{raw contrast} is the difference between the value of the character
+at two chosen tips: $c_{ij} = x_{i}-x_{j}$. Under the brownian model, $c_{ij}$
+has expectation zero and variance proportional to $v_{i}+v_{j}$. The
+\textbf{standardized contrast} is $s_{ij} = \frac{c_{ij}}{v_{i}+v_{j}}$. It
+follows that $s_{ij}\sim N(0,\sigma^{2})$.
+
+\subsection{Estimating Rates Using Maximum Likelihood}
+Another way to estimate evolutionary rate is by finding the maximum-likelihood
+parameter values for a brownian motional model. Our data is character values at
+the tips of the tree which we assume was generated with the Brownian model.
+There is a standard formula for the likelihood of drawing from a multivariate
+normal distribution; remember we wish to find the parameter values that maximize
+this function; this is done using optimization algorithms.
+
+Actually, in some cases we have analytic solutions.
+
+\textbf{Restrictied Maximum Liklihood} (REML) refers to an approach which uses
+ML after transforming the data set to remove nuisance paramters, such as the
+root state.
+
+
+\subsection{Bayesian Approach to Evolutionary Rates}
+This approach uses explicit priors for parameter values, and then runs an MCMC
+to estimate posterior distributions of parameter estimates.
+
+
+\section{Fitting Brownian Models to Multiple Characters}
+Motivation: A wide variety of hypotheses can be framed as tests of correlations
+between continuously varying traits across species. For example, is the body
+size of a species related to its metabolic rate? How does the head length of a
+species relate to overall size, and do deviations from this relationship relate
+to an animal’s diet?
+
+
+We make a distinction between \textbf{standard correlation} and
+\textbf{evolutionary correlation}. the first means that one trait predicts the
+value of another. The second is when two traits evolve together due to a process
+like mutation, drift, or selection. If there is an evolutionary correlation
+between two characters, that means we can predict the magnitude and direction of
+changes in one character given knowledge of evolutionary changes in another.
+
+Phylogenetic relatedness alone can lead to a relationship between two variables
+that are not in face evolving together. In that case, there is a confounding
+variable -- the clade the related species belong to.
+
+\subsection{Modeling the Evolution of Correlated Characters}
+Multivariate brownian motion. Each trait evolves under a brownian motion, but
+these brownian motions are not necessarily independent, as specified by some
+covariance matrix $\mathbf{R}$.
+
+Recall that correlations at the tips depend also on branch lengths, specified by
+some matrix $C$ (see chapter 3). Then the variance-covariance matrix is the
+Kroeneker product $\mathbf{R}\otimes \mathbf{C}$, an $nr\times nr$ matrix, where
+$n$ is the number of leaves of the tree and $r$ the number of traits.
+
+Here again, there is a formula for the likelihood of observing data
+$\mathbf{x}_{nr}$ given the input parameters. Also, we can estimate these
+parameters analytically with formulas similar to the univariate case.
+
+\subsection{Testing for Evolutionary Correlations}
+Fit a model with correlation. Fit a model without correlation. Calculate the
+optimal log-likelihood in both cases. Apply log-likelihood test.
+
+There is also a bayesian approach that I didn't read.
+
+\subsection{Testing with Traditional Approaches (PIC, PGLS)}
+
+PGLS is \textbf{Phylogenetic General Least Squares}. In general least squares,
+we construct a model of the relationship between the column vectors
+$x,y\in \R^{n}$ of trait values and the whose correlation we wish to test:
+\begin{equation*}
+  y = X_{D}b + \epsilon
+\end{equation*}
+where
+$X_{D} = \begin{bmatrix} 1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_n
+  \\ \end{bmatrix}$, $b$ is $2\times 1$, and the error vector $\epsilon$ is
+assumed to be multivariate normal with mean zero and some covariance matrix
+$\Omega$. In the Brownian model, we assume that the residuals have variances and
+covariances following the structure of the phylogenetic tree: that is, given by
+the matrix $\mathbf{C}$. We carry out standard least square to estimate model
+parameters. The first term in $b$ is the phylogenetic mean $\overline{z}(0)$,
+and the second term is an estimate for the slope of the relationship between $y$
+and $x$.
+
+Another way to think about a PGLS model is that we are treating $x$ as a fixed
+property of species. The deviation of $y$ from what is predicted by $x$ is what
+evolves under a Brownian motion model.
+
+
+\end{document}
