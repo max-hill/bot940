@@ -1,106 +1,44 @@
+%& -jobname=''hi''
 \documentclass{article}
-
 % Math Packages
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{bbm}
-\usepackage{breqn}
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage{tikz}
-\graphicspath{ {./images/} }
-
+\usepackage{amsmath,amssymb,amsthm,amsfonts,bbm,breqn,tikz,graphicx}
+\usepackage[margin=1in]{geometry} \graphicspath{ {./images/} }
 % Colorful Notes
-\usepackage{color}
-\definecolor{Red}{rgb}{1,0,0}
-\definecolor{Blue}{rgb}{0,0,1}
-\def\red{\color{Red}}
-\def\blue{\color{Blue}}
-\newcommand{\rnote}[1]{{\red(#1)}} % \rnote{foo} then 'foo' is red
-\newcommand{\bnote}[1]{{\blue(#1)}} % \bnote{foo} then 'foo' is blue
-
-% Concise Vector Macro
-% Write bracket vectors of arbitrary length using commands like \cv{1,2,3}
-% or \cv{0,1} ('cv' for 'column vector')
-\usepackage{stackengine}
-\newcommand\cv[1]{\setstackEOL{,,}\bracketVectorstack{#1}}
-
+\usepackage{color} \definecolor{Red}{rgb}{1,0,0} \definecolor{Blue}{rgb}{0,0,1}
+\def\red{\color{Red}} \def\blue{\color{Blue}} \newcommand{\rnote}[1]{{\red #1}}
+\newcommand{\bnote}[1]{{\blue #1 }} % Usage: \rnote{foo} and \bnote{foo}
 % Math Environments
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{assumption}{Assumption}
-\newtheorem{lemma}{Lemma}
-\newtheorem{remark}{Remark}
-\newtheorem{prop}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{example}{Example} 
-\newtheorem{question}{Question}
-\newtheorem{claim}{Claim} 
-\newtheorem{conjecture}{Conjecture} 
-
-%Custom Math Commands
+\newtheorem{theorem}{Theorem} \newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma} \newtheorem{remark}{Remark}
+\newtheorem{prop}{Proposition} \newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example} \newtheorem{question}{Question}
+\newtheorem{claim}{Claim} \newtheorem{problem}{Problem}
+% Custom Math Commands
 \newcommand{\vt}{\vskip 5mm} % vertical space
 \newcommand{\fl}{\noindent\textbf} % first line
-\newcommand{\Fl}{\vt\noindent\textbf} % first line with space above
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm
-\newcommand{\pnorm}[1]{\left\lVert#1\right\rVert_p} % p-norm
-\newcommand{\qnorm}[1]{\left\lVert#1\right\rVert_q} % q-norm
-\newcommand{\1}[1]{\textbf{1}_{\left[#1\right]}} % indicator function 
-\newcommand{\EE}[1]{\mathbb{E}\left[#1\right]} % expectation with bracket
-\newcommand{\PP}[1]{\mathbb{P}\left[#1\right]} % expectation with bracket
-\def\limt{\lim_{t\to\infty}} % shortcut for lim as t-> infinity
-\def\limn{\lim_{n\to\infty}} % shortcut for lim as n-> infinity
-\def\sumn{\sum_{n=1}^{\infty}} % shortcut for sum from n=1 to infinity
-\def\sumkn{\sum_{k=1}^{n}} % shortcut for sum from k=1 to n
-\def\sumin{\sum_{i=1}^{n}} % shortcut for sum from i=1 to n
-\def\SAs{\sigma\text{-algebras}} % shortcut for $\sigma$-algebras
-\def\SA{\sigma\text{-algebra}} % shortcut for $\sigma$-algebra
-\def\Fn{\mathcal{F}_n} % dicrete filtration
-\def\Ft{\mathcal{F}_t} % continuous time filration (t)
-\def\Fs{\mathcal{F}_s} % continuous time filtration (s)
-\def\F{\mathcal{F}} % sigma-algebra
-\def\G{\mathcal{G}} % sigma-algebra
-\def\R{\mathbb{R}} % Real numbers
-\def\Z{\mathbb{Z}} % Integers
-\def\E{\mathbb{E}} % Expectation
-\def\P{\mathbb{P}} % Probability
-
-\def\fin{< \infty} % Is Finite
-\def\a{\alpha} %alpha
-\def\e{\epsilon} %epsilon
-\def\th{\theta} %theta
-\def\lb{\lambda} %lambda
-\def\t{\tau} %tau
-
-% Brackets and Parentheses
-\def\[{\left [}
-\def\]{\right ]}
-\def\({\left (}
-\def\){\right )}
-\def\<{\langle}
-\def\>{\rangle}
-
-
+\def\[{\left [} \def\]{\right ]} \def\({\left (} \def\){\right )}
+\def\<{\langle} \def\>{\rangle} % Brackets and parentheses
+\def\R{\mathbb{R}} \def\Z{\mathbb{Z}} \def\E{\mathbb{E}} \def\P{\mathbb{P}}
+% Vector Macro
+\usepackage{stackengine}
+\newcommand\cv[1]{\setstackEOL{,,}\bracketVectorstack{#1}^{\top}}
+\newcommand\rv[1]{\setstackEOL{,,}\bracketVectorstack{#1}} %usage: \cv{1,2,3}
 % Macros specific to this class
 \newcommand{\advar}{\sigma_{a}^{2}} % additive variance
 \newcommand{\bvar}{\sigma_{B}^{2}}  % between population variance
 \newcommand{\mvar}{\sigma_{m}^{2}}  % mutational variance
 \newcommand{\wvar}{\sigma_{w}^{2}}  % phenotypic variation within a population
 \newcommand{\svar}{\sigma_{s}^{2}}  % per generation selection variance
-
-\title{Lecture-notes}
-
+\usepackage{dsfont}
+% Title
+\title{Botany 940 Notes}
 \begin{document}
+\maketitle
 
+\section{2022-02-01: Brownian Motion}
+[Harmon chapters 3-5]
 
-
-\section{Botany 940 Notes}
-\subsection{2021-02-01: Brownian Motion}
-
-\subsubsection{Hamon Chapter 3: Intro to Brownian Motion}
-
+\subsection{Hamon Chapter 3: Intro to Brownian Motion}
 We consider traits that have continuous distribution --- such as body mass. We
 can model these traits with brownian motion. It is incorrect to equate brownian
 motion models with models of pure genetic drift. (Why?)
@@ -135,7 +73,7 @@ Types of variance under this model:
 \end{itemize}
 \end{definition}
 
-\subsubsection{Additive variance equilibrium}
+\subsection{Additive variance equilibrium}
 \begin{claim}
   We have $\E\[ \advar (t)\] \approx 2N_{e}\sigma_{m}^{2}$ for large $t$.
 \end{claim}
@@ -162,7 +100,7 @@ Types of variance under this model:
 \end{proof}
 
 
-\subsubsection{Derivation of $\bvar(t)$}
+\subsection{Derivation of $\bvar(t)$}
   
 
 Assume $\advar$ is at equilibrium and thus constant. Harmon claims this is
@@ -297,7 +235,8 @@ traits have the following covariance matrix:
 \end{equation*}
 we see what $\mathbf{C}$ is in this case.
 
-\section{Fitting Brownian Motion Models to Single Characters}
+\section{2022-02-01: Fitting Brownian Motion Models to Single Characters}
+[Harmon chp 4]
 \subsection{Log Transforms}
 If your data is a continuous trait and you think percentage changes matter more
 than absolute changes, then you should do a log-transform of your data.
@@ -334,13 +273,12 @@ This approach uses explicit priors for parameter values, and then runs an MCMC
 to estimate posterior distributions of parameter estimates.
 
 
-\section{Fitting Brownian Models to Multiple Characters}
+\subsection{Fitting Brownian Models to Multiple Characters}
 Motivation: A wide variety of hypotheses can be framed as tests of correlations
 between continuously varying traits across species. For example, is the body
 size of a species related to its metabolic rate? How does the head length of a
 species relate to overall size, and do deviations from this relationship relate
 to an animal’s diet?
-
 
 We make a distinction between \textbf{standard correlation} and
 \textbf{evolutionary correlation}. the first means that one trait predicts the
@@ -395,6 +333,232 @@ and $x$.
 Another way to think about a PGLS model is that we are treating $x$ as a fixed
 property of species. The deviation of $y$ from what is predicted by $x$ is what
 evolves under a Brownian motion model.
+\section{2022-02-01: Fitting Brownian Motion Models ot Multiple Characters}
+[Harmon Chapter 5]
 
+Many hypotheses can be framed as tests of correlations between continuously varying traits across species. For example is the body size of a species related to the metabolic rate? Multivariate gaussians. Kroenecker product of the $\mathbf{R}$ and $\mathbf{C}$ matrices. Too much typing. Didn't take better notes.
+
+\section{2022-02-08: Continuous Traits: OU Models}
+[Harmon chapter 6, Butler et al 2004]
+
+\subsection{Beyond Brownian Motion}
+[Harmon chapter 6]
+
+This chapter considesr ways in which comparative methods can move beyond simple
+Brownian motion models:
+\begin{enumerate}
+  \item by transforming the variance-covariance matrix
+  \item by incorporating variation in rates of evolution
+  \item by accounting for evolutionary constrains
+  \item by modeling adaptive radiation and ecological opportunity.
+\end{enumerate}
+
+\subsubsection{Transforming the covariance matrix}
+Three statistical models to test whether data deviates from a constant-rate
+process evolving on a phylogenetic tree. These involve three kinds of Pagel tree
+transformations, each acting on the covariance matrix $\mathbf{C}$. They are $\lambda,\delta,\kappa$.
+\begin{itemize}
+  \item For Pagel's $\lambda$, you just multiply all the off-diagonal entries of
+  \textbf{C} by $\lambda\in [0,1]$. This is like shrinking all the internal
+  branches by a factor of $\lambda$ but leaving the leaf edges unchanged.
+  \item Pagel's $\delta$ is for capturing variation in rates of evolution over time. It
+  is done by raising all the entries of $\mathbf{C}$ to the power of $\delta$.
+  Depending on whether $\delta>1$ or $\delta<1$, this has the effect of stretching
+  or compressing the node heights, with deep and shallow branches affected
+  differently.
+  \item Pagel's $\kappa$ transformation is used to capture patterns of speciational
+  change in trees. In this, all the branch lengths are raised to the power of
+  $\kappa\geq 0$. This transformation isn't really used anymore.
+\end{itemize}
+\subsubsection{Variation in Rates of Trait Evolution Across Clades}
+Brownian motion assumes that the rate of change $\sigma^{2}$ is constant. There
+are three ways to test for differences in rate of evolution across clades:
+\begin{enumerate}
+\item Compare the magnitude of independent contrasts across clades. The key idea
+  is that when rates are high, we expect to see large independent contrasts in
+  that part of the tree; in particular, the square of an independent contrast is
+  an estimate of the brownian motion rate parameter $\sigma^{2}$.
+\item Use model comparison approaches to compare the fit of single- and
+  multipe-rate modelds to data on trees
+\item Use a Bayesian approach combined with reversible-jump machinery to try to
+  drift the places on the tree where the rate shifts have occurred.
+\end{enumerate}
+\bnote{I didn't really understand the last two.}
+
+
+\subsubsection{Non-Brownian Evolution Under Stabilizing SelectIon}
+Ornstein-Uhlenbeck (OU) model.
+
+\subsubsection{Early Burst Models}
+Test for adaptive radiations by looking for bursts of trait evolution deepin the
+tree. The simplest method is to use a time-inhomogenous brownian motion model;
+that is, a model in which the rate parameter $\sigma^{2}$ varies through time, such as
+\begin{equation*}
+  \sigma^{2}(t) = \sigma_0^{2}e^{bt}, \quad(b<0)
+\end{equation*}
+This model also generates multivariate normal distributions of tip values. In
+particular, given model parameters $(\overline{\zeta}_0,\sigma^{2},b)$, we can
+obtain a vector of means and a covariance matrix for the tips. From this, we can
+use the multivariate gaussian distribution function to calculate a likelihood,
+which can then be used in an ML or Bayesian statistical framework.
+
+\subsubsection{Peak Shift Models}
+Punctuated trait shifts. Has to do with multivariate models.
+
+
+\subsection{Phylogenetic Comparative Analysis: Modeling Adaptive Evolution}
+[Butler and King 2004]
+
+OU model incorporates both selection and drift. This paper develops the method for one quantitative character. This allows us to test hypotheses regarding adaptation in different selective regimes against data using ML. 
+
+If two species are in different selective regimes, we expect their mean phenotypes to differ. But in Brownian models, all lineages share the same expected mean phenotype. Also we should expect variance in mean phenotypes to remain bounded, but in Brownian motion models, this variance grows without bound.
+
+OU model includes Brownian motion as a special Case. Consider the evolution of a quantitative character $X$ along the branch of a phylogenetic tree. We can decompose the change in $X$ into deterministic and stochastic parts:
+\begin{equation*}
+  dX(t) = \alpha \left[ \theta -X(t) \right]dt + \sigma dB(t)
+\end{equation*}
+where $\alpha$ measures the strength of selection and $\sigma$ measures the intensity of the random fluctuations in the evolutionary process. The parameter $\theta$ gives the optimum trait value.
+
+There are two evolutionary interpretations:
+\begin{itemize}
+\item $X(t)$ represents the species' mean phenotype, with $\theta$ taking the role of a local maximum in a fitness landscape, 
+\item something else
+\end{itemize}
+Each lineage in the tree evolves according to its own OU process, which requires
+that there be one optimum per branch of the phylogeny.
+
+
+
+\section{Uyeda (2013) A Novel Bayesian Method for Inferring...'}
+
+\subsection{Abstract and Intro}
+Devolops reversible-jump Bayesian method of fitting multi-optima OU models to
+phylogenetic comparative data. Goal: estimate the placement and magnitude of
+adaptive shifts from the data.
+
+Adaptive landscape. Microevolution assumes it's fixed, but this is not
+reasonable for macroevolution.
+
+Software often requires optima to be ``painted'' onto branches according to
+researcher's hypotheses.
+
+\subsection{Methods}
+
+OU parameters
+\begin{align*} d\overline{z} &= \alpha(\theta-\overline{z})+\sigma dW
+\end{align*} here $\alpha$ is the \textit{rate of adaptation}, measured in
+inverse time units; $\theta$ is the optimum value of the process; $\sigma^{2}$
+is the per unit time magnitude of uncorrelated diffusion (measured in units of
+squared trait units per time unit).
+
+The phylogenetic half-life is $\alpha^{-1}\log (2)$, which is measured in time
+units. This is an easier way to interpret $\alpha$. It is the amount of time it
+takes for the expected trait value to get halfway to the phenotypic optimum. If
+this is small (i.e. $\alpha$ is large) then covariance between species erodes
+exponentially fast, so that the results will resemble a BM process. OTOH, if
+$\alpha$ is small (ie much shorted than the youngest split on a phylogeny) then
+the model will resemble a white noise process (i.e., residual trait values are
+completely uncorrelated). [I don't understand that].
+
+A useful compound parameter for OU process is: $V_{y}=\sigma^{2}/2\alpha$, which
+is \textbf{stationary variance}, the equilibrium variance of an OU process
+evolving around a stationary optimum $\theta$.
+
+\textbf{Multi-optima OU models} are a modification of standard OU model in which
+adaptive optimum $\theta$ is allowed to vary accross the phylogeny according to
+discrete shifts in adaptive regimes. However, the number of shifts and their
+locations on the phylogeny are not fixed. Instead the algorithm presented in
+this paper estimates those things.
+
+\subsection{Reversible-Jump Model} Start with a fully resolved phylogeny with
+$N$ taxa. The optima at the root is $\theta_0$, and the vector of optima on the
+tree is $\overline{\theta}=(\theta_0,\ldots,\theta_{K})$ where $K$ is the number
+of shifts between adaptive optima. The locations of shifts are mapped onto the
+phylogeny as locations $\mathbf{L}=\left\{ L_{1},\ldots,L_{K} \right\}$. Given
+these parameters, the distribution of tip states $Y$ is multivariate normal with
+expectation
+\begin{equation*} \E\[Y|Y_{0},\alpha,\mathbf{L},\overline{\theta} \]=
+\mathbf{W}\overline{\theta}
+\end{equation*} where $Y_0$ is the root state and \textbf{W} a matrix of weights
+used to calculate the weighted average of adaptive optima, discounted by an
+exponentially decreasing function that depends on the rate parameter $\alpha$
+and the time since the species evolved under a given optima. The full
+explanation and derivation is not given in this paper.
+
+The covariance matrix for $Y$ is given by
+\begin{align*} Y_{i} &= \frac{\sigma^{2}}{2\alpha}\left[ 1-e^{-2\alpha t_{0,i}}
+\right]\\ Y_{ij} &= e^{-\alpha t_{ij}}\frac{\sigma^{2}}{2\alpha}\left[
+1-e^{-2\alpha t_{0,ij}} \right]
+\end{align*} where $t_{0,i}$ is the time from the root to species $i$; $t_{ij}$
+is the total time separating species $i$ and $j$; and $t_{0,ij}$ is the total
+time separating the root and the MRCA of species $i$ and $j$.
+
+What is a pruning algorithm (``we used a pruning algorithm to speed computation
+and calculate conditional likelihood'' p904)?
+
+The reversible-jump framework uses Metropolis-Hastings algorithm to explore
+models with varying dimensionality through the course of the MCMC.
+Dimensionality here refers to the number of optima shifts which occur. The
+amount of time the MCMC spends in a given model is proportional to its posterior
+probability.
+
+Adaptive optima are constructed in a way that makes them unique (i.e. different
+from the other optima). This was done because it's easier for the detailed
+balance condition to be shown to be true in that case.
+
+
+\subsection{Simulation Study}
+Variation in body sizes in 226 extant chelonians (turtles and tortoises).
+
+I am a little confused about what Uyeda and Harmon (2013) are doing in the
+simulation study of chelonian body sizes, and have tried to write out the basic
+steps of their approach. If I am understanding correctly, the basic procedure is
+as follows:
+
+1. The input for the simulation study is a phylogenetic species tree T with
+the 226 extant chelonians as leaves, along with (a) the average body size of the
+taxa at each leaf of T, and (b) some prior distribution on the space of
+possible parameters $K, \mathbf{L}, \theta, \alpha$, and $\sigma^{2}$.
+
+2. The MCMC algorithm jumps around the space of possible combinations of
+parameters; the Markov chain is constructed such that that its stationary
+distribution is the posterior probability. Therefore in the long run, the
+proportion of time the Markov chain spends in a particular state converges to
+the posterior probability of that state. After running the Markov chain for
+500,000 or so steps, a sufficent degree of convergence has taken place, and a
+sample is taken.
+
+3. Repeat step 2 several thousand times obtain several thousand samples.
+
+4. The sample distribution is taken to be our estimate of the posterior
+distribution. The posterior distribution is a distribution *on the space of
+parameters*.
+
+5. Provided that chelonian evolution is well approximated by the OU process, the
+posterior distribution is thought to say something informative about where/when
+optima shifts occurred, intensity of selection, etc (e.g. Figure 6)
+
+Is this a correct understanding of the basic procedure?
+
+
+\section{Omeara et al 2006: Testing for different rates of continuous trait evolution using likelihood}
+\subsection{Basic Properties of Character Evolution on Trees}
+
+\textbf{Disparity} is commonly measured as variance of the states of the taxa. So higher disparity for a character means the taxa are less similar for the character. BM is the standard model for continuous character evolution. Of course disparity depends on both variance of BM (the ``rate of character evolution'') and the underlying phylogenetic tree (i.e. divergence times).
+
+Suppose we have a tree with $n$ leaves. Let $C$ be the $n\times n$ matrix whose $ij$-th entry is the distance from the root to the MRCA of leaves $i$ and $j$. Then
+\begin{equation*}
+  \E\[ \mathrm{disparity}\]= \sigma^{2}\left[ \frac{1}{n} \mathrm{tr}(C) - \frac{1}{n^{2}} \mathbf{1}^{\top}C \mathbf{1} \right]
+\end{equation*}
+
+
+Note that extinctions can reduce the age of MRCA of a clade. The ML estimator of the rate of phenotypic evolution under BM is
+\begin{equation*}
+  \widehat{\sigma}^{2} =  \frac{\left[ X-\E\[X \]  \right]^{\top} C^{-1}\left[ X-\E\[X \]  \right]}{N}
+\end{equation*}
+where $X$ is the column vector of tip observations.
+
+
+The \textbf{noncensored approach} is where each branch is painted with a rate parameter $\sigma^2$. There is a ML estimator for this in which the rates are allowed to vary on different places of the tree. I think Harmon went over this and it's in my notes above. The \textbf{censored apprach} makes no assumptions about where or how the change has happened somewhere on that branch. 
 
 \end{document}
