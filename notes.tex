@@ -696,9 +696,21 @@ correlations. An estimate of the strength of phylogenetic signal in the residual
 variation.
 
 
+I am still trying to understand the multivariate case in the Ives and Garland
+paper. The process is divided into two components. In the first component, a
+binary character evolves along the phylogenetic tree according to some Markov
+process starting at the root and having transition rates
+$\alpha=(\alpha_{0},\alpha_{1})$ and stationary distribution $\mu$ which is some
+function of these rates. This yeilds a vector $Y$ of binary states corresponding
+to the leaves of the tree. (So far so good). In the second component, ``we
+assume the value of $Y_{i}$ evolves toward either 0 or 1 depending on the values
+of [the species-specific independent variables], with the rate of evolution no
+longer depending on the transition rate $\alpha$ but instead depending on the
+regression coefficients $b_{j}$ for the independent variables $X^{j}$''.
 
+Does this second step change the values of $Y$ obtained in the first step?
 
-\section{2022-02-28: Hipp et al 2017: Sympatrix parallel Diversification of
+\section{2022-02-28: Hipp et al 2017: Sympatric parallel Diversification of
   major oak clades}
 
 Used 300 samples from 146 species of oak trees using RAD-seq sequencing. An ML
@@ -730,5 +742,67 @@ of Hipp 2017). As well as the boostrap confidence intervals and bootstrap p
 values in Ives and Garland. 
 
 What is parallel sympatric diversificaton?
+
+
+\section{2022-03-03: Revell 2013: Two new graphical models for mapping trait
+  evolution on phylogenies}
+
+Two different graphical models are presented for visualizing phenotypic
+evolution on the tree.
+\begin{enumerate}
+\item Method 1: a new approach for plotting the posterior density of
+  stochastically mapped character histories for a binary (two-state) phenotypic
+  trait on a phylogeny
+\item Method 2: a closely related technique that uses ancestral character
+  estimation to visualize historical character states for a continuous trait
+  along the branches of the tree.
+\end{enumerate}
+The second method has the downside of ignoring the uncertainty about ancestral
+traits. In this paper, a ``traitgram'' is presented which allows visualization
+of ancestral state uncertainty.
+
+An interesting equation from Felsenstein is used in both papers
+\begin{equation*}
+  \hat{a}= \frac
+  {\frac{x_{i}}{v_{i}}+ \frac{x_{j}}{v_{j}}}
+  {\frac{1}{v_{i}}+\frac{1}{v_{j}}}
+\end{equation*}
+to interpolate the value $\hat{a}$ of a trait on an edge by its values $x_{i}$
+and $x_{j}$ at phylogenetic distances $v_{i}$ and $v_{j}$ away. This can be interpreted as a weighted harmonic mean (as here, with $w_{i}=x_{i}/v_{i}$: https://en.wikipedia.org/wiki/Harmonic_mean#Weighted_harmonic_mean). Is there a simple intuition why this is the appropriate way to interpolate character values? 
+
+Also, was BUCKy was named after the badger?
+
+\textbf{Stochastic character mapping} involves sampling possible histories of a
+discretely valued character from their Bayesian posterior distribution. When you
+have thousands of such character maps, you can estimate the history of a
+discretely-valued character trait which evolved on the tree. Unfortunately, it's
+hard to visualize this on a figure for publication.
+
+
+\section{2022-03-03: Kriebel 2014: Discovery of unusual anotomical and
+  continuous characters in the evolutionary history of Conostegia}
+
+Conostegia is a genus of flowering plants native to the Americas. This paper
+finds to to be paraphyletic. Unusual characters were documented and their
+evolution studied in light of the phylogeny. The importance of documenting
+anatomical and continuous characters is demonstrated.
+
+Use of both binary and continuous characters. The continuous characters used were: herkogamy and seed size.
+
+Two methods used to reconstruct ancestral states:
+SIMMAP -- stochastic character mapping
+ACE -- ancestral character estimation
+
+\subsection{Phylogenetic Analyses}
+MAFFT to make alignmnets. ML analyseses done using RAxML. Bayesian analyses done
+on partitioned dataset using MrBayes. Convergence analyses using Tracer v1.5 and
+AWTY. Bayesian concordance analyses (BCA) implemented in BUCKy,
+
+
+
+
+\subsection{Questions}
+
+Was BUCKy named after Bucky the badger?
 
 \end{document}
