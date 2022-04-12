@@ -810,7 +810,100 @@ You can have discordances between different trees as a result of ILS, hybridizat
 
 There were some differences between concatenated vs concordance trees, suggesting the possibility of ancient hybridization or chloroplast capture.
 
-\section{Does this get added with git?}
-\section{How about this??}
-\section{Will it push?}
+
+\section{The Dark Side 2022-04-12}
+
+Some ofthe challenges and limitation s of phylogenetic comparative methods.
+Roadmap
+\begin{enumerate}
+\item Intro
+\item Unsolved challenge to correlation tests for categorical characters
+(maddiso and fitzjohn 2014)
+\item Model inadequacy and mistaken inference (rabosky and goldberg 2014)
+\item Tying the readings together
+\end{enumerate}
+
+\subsection{Intro}
+Comparative methods has limitations -- how can we overcome these limitations to
+better our understanding of evolutionary biology. We can look at huge datasets
+to test hypotheses  about adaptation, ancestral states, rates of evolution and
+diversification, etc.
+
+Two major limitations:
+\begin{enumerate}
+\item State-dependent models consider only a relatively small set of possible
+models
+\item If we apply the tests to empirical phylogenetic trees, even with made-up
+data or neutral characters, we almost always find statisically significant
+restults. There are Type-I errors.
+\end{enumerate}
+There some ways to deal with these issues, according to Harmon
+\begin{enumerate}
+\item Compare statistical support with the support one obtains from random data
+\item Make sure the events we test are \textbf{replicated} in our data. This
+means we need to see the events in \textit{more than one clade.}
+\item Explicitly consider the possibility that some unmeasured character is what
+is influencing diversification rates. 
+\end{enumerate}
+
+\subsection{Paper 1: The Unsolved Challenge to Phylogenetic Correlation Tests
+  for Categorical Characters}
+Main points of the paper:
+\begin{itemize}
+\item We might mistakenly conclude that there is an adaptive or functional
+relationship when a trait in a lineage is accompanied by a second trait's
+evolutionary change
+\item Methods will indicates statistically significant association even if
+codistribution arose only once
+\item Flaws due to simplificed models (sth)
+\item Upshot:even if the models adjusted to predict such distributions, they
+would still be susceptible to ``pseudoreplication''
+\end{itemize}
+
+Figure 1 in the paper is pretty clear. In (1a), we see replicated
+codisqtribution. In (1b) we see replicated bursts. Both of these cases should be
+taken as evidence of a functional/adaptive relationship, and the number of
+samples is 6, as this is the number of times the coincidence arose. In (1c) and
+(1d) we see examples where coincidences are NOT good evidence because the number
+of samples is essentially one -- codistribution in these cases is more likely
+due to one case where the traits coincided, and then were inherited together.
+This results in their descendents being \textbf{pseudoreplicates}, because they
+apprear to be examples of replication, but the ``replication'' is not
+independently-occurring (due to the shared phylogeny). Of course something could
+be happening in (1c) and (1d), but we just don't have good statistical evidence
+in those cases.
+
+A cool example of (1b) is plant carnivory and evolution of pitcher-like pitfalls
+to trap prey. Floral structure vs pollinator visitors. Vanilla plants: island
+habitat vs leaf losee. Cats: pleiotropy (one gene have multiple functions) --
+whiskers vs penis hooks. Maybe hard to find examples where trait evolves
+independently $>6$ times; herbaceous vs woody is an example. There are about
+13 times where aquatic plants transitioned to terrestrial.
+
+Figure 3 gives more examples which are less clear-cut, and as-yet unanswered.
+For example, does replication across \textit{two} clades constitute good
+statistic evidence? For example the examples of codistribution in (3d) and (1b)
+look very similar, so where is the quantative threshold for statistical significance
+between these two cases?
+
+\subsection{Paper 2: Model Inadequacy and Mistaken Inferences of Trait-Dependent Speciation}
+
+Maint points
+\begin{itemize}
+  \item Associations between character states ...
+\end{itemize}
+
+Figure 1 and Figure 2. Phylogeny of extant whales. Is body size associated with
+diversification? Figure 2 involved resampling the tree topology to obtain pseudo
+p-values for whether the results where statistically significant. Neutral traits
+found to be highly significant. Should start with a hypothesis rather than
+generating one after looking at the data. Should test the shape of the tree
+against neutral characters. Some tree shapes are likely to give rise to spurious
+significance results for random neutral characters.
+
+Significance needs to be understood in relative, rather than absolute terms,
+i.e. such as by comparing a character with other characters hypothesized to be neutral. 
+
+
+
 \end{document}
