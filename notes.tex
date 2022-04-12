@@ -7,11 +7,11 @@
 \def\red{\color{red}} \def\blue{\color{blue}} \newcommand{\rnote}[1]{{\red #1}}
 \newcommand{\bnote}[1]{{\blue #1 }} % usage: \rnote{foo} and \bnote{foo}
 % math environments
-\newtheorem{theorem}{theorem} \newtheorem{definition}{definition}
-\newtheorem{lemma}{lemma} \newtheorem{remark}{remark}
-\newtheorem{prop}{proposition} \newtheorem{corollary}{corollary}
-\newtheorem{example}{example} \newtheorem{question}{question}
-\newtheorem{claim}{claim} \newtheorem{problem}{problem}
+\newtheorem{theorem}{Theorem} \newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma} \newtheorem{remark}{Remark}
+\newtheorem{prop}{Proposition} \newtheorem{corollary}{Corollary}
+\newtheorem{example}{Example} \newtheorem{question}{Question}
+\newtheorem{claim}{Claim} \newtheorem{problem}{Problem}
 % custom math commands
 \newcommand{\vt}{\vskip 5mm} % vertical space
 \newcommand{\fl}{\noindent\textbf} % first line
@@ -30,7 +30,7 @@
 \newcommand{\svar}{\sigma_{s}^{2}}  % per generation selection variance
 \usepackage{dsfont}
 % title
-\title{botany 940 notes}
+\title{Botany 940 Notes}
 \begin{document}
 \maketitle
 
@@ -905,5 +905,63 @@ Significance needs to be understood in relative, rather than absolute terms,
 i.e. such as by comparing a character with other characters hypothesized to be neutral. 
 
 
+\section{Hidden Markov Models}
+
+I am presenting on the Beaulieu et al. paper entitled ``Identifying Hidden Rate
+Changes in the Evolution of a Binary Character.'' The link to the paper is
+\begin{verbatim}
+https://doi.org/10.1093/sysbio/syt034
+\end{verbatim}
+\textbf{TLDR:} The paper introduces a method of identifying different rates of
+evolution in a binary character along different branches of a phylogeny and
+applies this method to explore a flowering plant clade comprised of 35,000
+species.
+
+\textbf{Character Trait:} An example of a binary character considered in this
+paper is whether a plant species is woody (W) or herbaceous (H). This character
+trait can exhibit tremendous intraclade variation, with apparently mutiple
+shifts between these growth forms.
+
+\textbf{Problem:} Erroneous assumptions about transition rates along different
+edges of a species tree could lead to estimation error. This is especially true
+for large phylogenetic trees (e.g. trees with tens of thousands of tips) where
+variation in transition rates is to be expected.
+
+\subsection{Methods: Hidden Rates Model}
+
+\begin{definition}[Time-Homogenous Model]
+  The time-homogenous model (TH model) involves estimating ancestral states
+  using maximum-likelihood under the assumption that the binary trait of
+  interest evolves with constant transition rates which are the same everywhere
+  on the species tree. That is, at any time and at any point on an edge of the
+  species tree, the rate of transition from W to H or H to W is governed by the
+  rate matrix
+  \begin{equation*}
+    Q =
+    \begin{bmatrix}
+      0&q_{W\to H}\\
+      q_{H\to W}&0\\
+    \end{bmatrix}
+  \end{equation*}
+\end{definition}
+\begin{remark}
+  The above model assumes, for example, that if the transition rate from $H$ to
+  $W$ is fast in one place on the tree, then it must be fast everywhere on the
+  tree. Such assumptions are unrealistic. This is the problem the HRM is
+  intended to address.
+\end{remark}
+
+The HRM model assumes that the transition rate along an edge of the species tree
+may belong to any one of a certain number of ``rate classes''. For example,
+there might be two rate classes, fast (F) and slow (S). The rate classes are
+treated as a ``hidden variable'' in the sense that it is assumed that we cannot
+observe it directly. This gives a single model governed by the $4\times4$ rate
+matrix given by equation (3) in the paper, as we have four states:
+$\left\{ WS, HS, WF, HF \right\}$.
+
+Next they discuss a biological interpretation of this four-state model. The
+takeaway is that the additional states allow the HRM to paint a phylogeny with
+areas where transitions happen frequently or infrequently due to unmeasured
+characters that affect the rates.
 
 \end{document}
