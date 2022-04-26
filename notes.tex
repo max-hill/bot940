@@ -968,4 +968,67 @@ takeaway is that the additional states allow the HRM to paint a phylogeny with
 areas where transitions happen frequently or infrequently due to unmeasured
 characters that affect the rates.
 
+\section{Lecture 2022-04-26}
+\subsection{First reading}
+Reading: Manceau, Lambert, and Morlon (2017)
+
+What is new in this paper is that they consider interaction between lineages.
+For example, an interaction between moths and flowers based on stamen length or
+something. But in that case you need to have traits that are comparable but not
+necessarily the same (e.g. length for the flower and some other length for the
+bug); these are both called $x$, and they must have some interaction. Recall
+their model
+\begin{align*}
+  dX_{t} 
+  &= (a(t)-AX_{t})dt +\Gamma(t)dW_{t}\\
+    X_{0}
+  &= x_{0}
+\end{align*}
+where $A$ is a constant square matrix and $\Gamma$ is a matrix, and these govern
+the interaction of different taxa/traits. Here $X$ is a vector of trait values.
+Figure 2 shows how this allows us to specify attraction or repelling between
+traits, or other phenomenon.
+
+They don't really provide examples about how their unifying model can be
+applied.
+\subsection{Second Reading}
+Drury et. al. (2021)
+
+Question:does increased competition in the tropics drive evolution? There were
+three main ideas for their models:
+\begin{itemize}
+\item Competiation parameters may differ between two large areas: temperate vs
+tropic
+\item The trate \textbf{rate} (DD = diversity dependence) or trait
+\textbf{state} (MC) is affected by other species
+\item Other species: those in their geographical area, using biogeography reconstruction.
+\end{itemize}
+
+\begin{equation*}
+  dX_{t}^{j} = \left\{ \begin{array}{l@{\quad:\quad}l}
+      \sigma_{0}\exp \left[ \frac{1}{2}r_{A}n_{t}^{(A)}
+      \right] & j\in A \text{ at time }t
+      \\ \sigma_{0}\exp \left[ \frac{1}{2}r_{B}n_{t}^{(B)}dW_{t} \right]
+      &j\in B \text{ at time }t \end{array}\right.
+\end{equation*}
+can do improvements by doing DD with smaller areas. In particular, use Bio Geo
+BEARS.
+
+Another thing they did: matching competition models: MC.
+
+Nontrivial null model: BM, OU, EB
+\begin{equation*}
+  dX_{t}^{(j)} =\sigma_{0} \exp \left( \frac{1}{2}r_{A}t \right)dW_{t}
+  \quad\text{if $j$ is in $A$ at time $t$} 
+\end{equation*}
+They looked at 7 traits, with over a hundred avian families. But they don't find
+more competition in the tropics compared to nontropics. There is no observed
+relationship to latitude. Each of the colored dots is an avian family.
+
+Measurement error and variation within species might affect the results. There
+appears to be more of this for species within the tropics.
+
+If two taxa are in the same biogeographic area, then they are assumed to be
+interacting, and not otherwise.
+
 \end{document}
